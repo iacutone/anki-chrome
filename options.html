@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anki Review — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="head">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <h1>New Tab Anki Review</h1>
+        </div>
+        <p class="sub">Review your due Anki cards in every new tab.</p>
+      </header>
+
+      <div id="status" class="status hidden"></div>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Decks</h2>
+          <div class="card-head-actions">
+            <button id="select-all" class="btn btn-ghost btn-sm" type="button">All</button>
+            <button id="select-none" class="btn btn-ghost btn-sm" type="button">None</button>
+            <button id="refresh-decks" class="btn btn-ghost btn-sm" type="button">Refresh</button>
+          </div>
+        </div>
+        <div id="deck-list" class="deck-list"></div>
+        <span class="hint">
+          Pick one or more decks to review. Select none to review
+          <strong>all decks</strong>. Requires Anki Desktop open with AnkiConnect.
+        </span>
+      </section>
+
+      <section class="card">
+        <h2>Session</h2>
+        <label class="field">
+          <span class="label">Cards per new tab</span>
+          <input id="sessionSize" type="number" min="0" max="999" />
+          <span class="hint">How many due cards to queue per new tab. 0 = unlimited.</span>
+        </label>
+
+        <label class="check">
+          <input id="includeNew" type="checkbox" />
+          <span>Include new (not-yet-learned) cards</span>
+        </label>
+
+        <label class="check">
+          <input id="autoPlayAudio" type="checkbox" />
+          <span>Auto-play audio on each card</span>
+        </label>
+      </section>
+
+      <section class="card">
+        <h2>When nothing is due</h2>
+        <label class="field">
+          <span class="label">Redirect URL (optional)</span>
+          <input id="skipUrl" type="url" placeholder="https://www.google.com" />
+          <span class="hint">
+            Leave blank to show an "All caught up" screen. Otherwise the new tab
+            redirects here when no cards are due.
+          </span>
+        </label>
+      </section>
+
+      <section class="card">
+        <h2>Advanced</h2>
+        <label class="field">
+          <span class="label">AnkiConnect API key (optional)</span>
+          <input id="apiKey" type="text" placeholder="Leave blank if not set" />
+          <span class="hint">Only needed if you set an apiKey in AnkiConnect's config.</span>
+        </label>
+      </section>
+
+      <div class="actions">
+        <button id="save" class="btn btn-primary" type="button">Save settings</button>
+      </div>
+
+      <details class="help">
+        <summary>Setup &amp; troubleshooting</summary>
+        <ol>
+          <li>Install <strong>AnkiConnect</strong> in Anki: <code>Tools → Add-ons → Get Add-ons</code>, code <code>2055492159</code>.</li>
+          <li>Keep <strong>Anki Desktop</strong> open while you browse.</li>
+          <li>If cards don't load, add this extension's origin to AnkiConnect's <code>webCorsOriginList</code>:
+            <br /><code id="ext-origin"></code>
+          </li>
+        </ol>
+      </details>
+    </main>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

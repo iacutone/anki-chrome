@@ -1,0 +1,288 @@
+:root {
+  --bg: #0f1115;
+  --bg-elev: #181b22;
+  --text: #e7e9ee;
+  --muted: #8b909c;
+  --border: #262a33;
+  --accent: #5b8cff;
+  --accent-hover: #6f9bff;
+  --good: #3ea76a;
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f5f7;
+    --bg-elev: #ffffff;
+    --text: #1b1f27;
+    --muted: #6b7280;
+    --border: #e3e6ea;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.head {
+  margin-bottom: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(91, 140, 255, 0.18);
+}
+
+.brand h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.sub {
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  font-size: 15px;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-head h2 {
+  margin: 0;
+}
+
+.card-head-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 13px;
+}
+
+.deck-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.deck-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.deck-item:hover {
+  background: rgba(127, 127, 127, 0.08);
+}
+
+.deck-item input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  flex: none;
+}
+
+.deck-empty {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 12px 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row select {
+  flex: 1;
+}
+
+select,
+input[type="number"],
+input[type="url"],
+input[type="text"] {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 10px 12px;
+  font-size: 15px;
+  width: 100%;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.actions {
+  margin-top: 8px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.08s, border-color 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+.status {
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status.ok {
+  background: rgba(62, 167, 106, 0.15);
+  color: var(--good);
+  border: 1px solid rgba(62, 167, 106, 0.4);
+}
+
+.status.err {
+  background: rgba(239, 83, 80, 0.14);
+  color: #ef5350;
+  border: 1px solid rgba(239, 83, 80, 0.4);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.help {
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.help summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.help ol {
+  line-height: 1.7;
+  padding-left: 20px;
+}
+
+code {
+  background: rgba(127, 127, 127, 0.16);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 13px;
+  word-break: break-all;
+}

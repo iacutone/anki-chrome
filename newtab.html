@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Tab</title>
+    <link rel="stylesheet" href="newtab.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span class="brand-name">Anki Review</span>
+        </div>
+        <div class="topbar-right">
+          <span id="deck-label" class="deck-label"></span>
+          <span id="progress" class="progress"></span>
+          <button id="settings-btn" class="icon-btn" title="Settings" aria-label="Settings">
+            &#9881;
+          </button>
+        </div>
+      </header>
+
+      <!-- Loading -->
+      <section id="view-loading" class="view">
+        <div class="spinner"></div>
+        <p class="muted">Connecting to Anki…</p>
+      </section>
+
+      <!-- Review -->
+      <section id="view-review" class="view hidden">
+        <div id="card-host" class="card-host"></div>
+
+        <div id="controls-front" class="controls">
+          <button id="show-answer" class="btn btn-primary btn-wide">
+            Show Answer <kbd>Space</kbd>
+          </button>
+        </div>
+
+        <div id="controls-back" class="controls grade-controls hidden">
+          <button class="btn grade" data-ease="1">
+            <span class="grade-label">Again</span><kbd>1</kbd>
+          </button>
+          <button class="btn grade" data-ease="2">
+            <span class="grade-label">Hard</span><kbd>2</kbd>
+          </button>
+          <button class="btn grade grade-good" data-ease="3">
+            <span class="grade-label">Good</span><kbd>3</kbd>
+          </button>
+          <button class="btn grade" data-ease="4">
+            <span class="grade-label">Easy</span><kbd>4</kbd>
+          </button>
+        </div>
+      </section>
+
+      <!-- Done / empty -->
+      <section id="view-done" class="view hidden">
+        <div class="big-emoji">&#127881;</div>
+        <h1 class="done-title">All caught up!</h1>
+        <p class="muted">No more cards due in this deck right now.</p>
+        <div class="done-actions">
+          <button id="reload-btn" class="btn btn-secondary">Check again</button>
+          <button id="open-options-btn" class="btn btn-secondary">Settings</button>
+        </div>
+      </section>
+
+      <!-- Error / setup -->
+      <section id="view-error" class="view hidden">
+        <div class="big-emoji">&#9888;&#65039;</div>
+        <h1 id="error-title" class="done-title">Can't connect to Anki</h1>
+        <p id="error-message" class="muted"></p>
+        <div id="error-help" class="error-help hidden"></div>
+        <div class="done-actions">
+          <button id="retry-btn" class="btn btn-primary">Retry</button>
+          <button id="error-options-btn" class="btn btn-secondary">Settings</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="newtab.js"></script>
+  </body>
+</html>

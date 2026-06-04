@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "New Tab Anki Review",
+  "version": "0.1.0",
+  "description": "Review your due Anki cards every time you open a new tab. Connects to Anki Desktop via AnkiConnect.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://127.0.0.1:8765/",
+    "http://localhost:8765/"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
