@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "New Tab Anki Review",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Review your due Anki cards every time you open a new tab. Connects to Anki Desktop via AnkiConnect.",
   "permissions": ["storage"],
   "host_permissions": [

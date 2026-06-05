@@ -37,6 +37,7 @@ const state = {
   index: 0,
   current: null, // { info, cardShadow }
   showingAnswer: false,
+  grading: false,
   total: 0,
 };
 
@@ -118,14 +119,18 @@ async function loadCurrentCard() {
 }
 
 async function grade(ease) {
-  if (!state.showingAnswer || !state.current) return;
+  if (!state.showingAnswer || !state.current || state.grading) return;
   const cardId = state.current.info.cardId;
-  // Optimistically advance; report errors if the answer fails.
+  state.grading = true;
   try {
+    // `answered` is false only when Anki no longer has the card; either way we
+    // move on so the user isn't stuck on a card that can't be graded.
     await answerCard(cardId, ease, state.settings.apiKey);
   } catch (err) {
+    state.grading = false;
     return handleError(err);
   }
+  state.grading = false;
   state.index += 1;
   state.current = null;
   await loadCurrentCard();
@@ -136,6 +141,7 @@ async function start() {
   state.index = 0;
   state.queue = [];
   state.current = null;
+  state.grading = false;
 
   state.settings = await loadSettings();
 
@@ -212,6 +218,18 @@ function handleError(err) {
       </ol>
       <p style="margin:10px 0 0">Example config:</p>
       <code>"webCorsOriginList": ["http://localhost", "${origin}"]</code>`
+    );
+    return;
+  }
+  if (err instanceof AnkiError && err.kind === "unsupported") {
+    showSetup(
+      "Update AnkiConnect to grade cards",
+      "Your installed AnkiConnect is too old to record answers. The action used to grade cards (answerCards) was added to AnkiConnect in 2023.",
+      `<ol>
+        <li>In Anki: <code>Tools &rarr; Add-ons</code>.</li>
+        <li>Select <strong>AnkiConnect</strong>, then click <strong>Check for Updates</strong> (or remove it and re-add code <code>2055492159</code>).</li>
+        <li>Restart Anki, reopen this tab, and try again.</li>
+      </ol>`
     );
     return;
   }

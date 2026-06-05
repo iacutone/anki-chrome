@@ -41,7 +41,10 @@ export async function invoke(action, params = {}, key = null) {
   }
 
   const data = await response.json();
-  if (data.error) throw new AnkiError(data.error, "anki");
+  if (data.error) {
+    const kind = /unsupported action/i.test(data.error) ? "unsupported" : "anki";
+    throw new AnkiError(data.error, kind);
+  }
   return data.result;
 }
 
@@ -83,11 +86,14 @@ export function cardsInfo(cardIds, key) {
 }
 
 /**
- * Answer cards with the given ease (1=Again, 2=Hard, 3=Good, 4=Easy).
+ * Answer a card with the given ease (1=Again, 2=Hard, 3=Good, 4=Easy).
  * Uses AnkiConnect's headless scheduler so the Anki GUI need not be open.
+ * Requires AnkiConnect with the `answerCards` action (added June 2023).
+ * @returns {Promise<boolean>} true if the card was answered, false if not found
  */
-export function answerCard(cardId, ease, key) {
-  return invoke("answerCards", { answers: [{ cardId, ease }] }, key);
+export async function answerCard(cardId, ease, key) {
+  const result = await invoke("answerCards", { answers: [{ cardId, ease }] }, key);
+  return Array.isArray(result) ? result[0] !== false : Boolean(result);
 }
 
 /** Retrieve a media file as base64, or null if missing. */
