@@ -1,5 +1,6 @@
 import { deckNames, AnkiError } from "./anki.js";
 import { DEFAULTS, loadSettings, saveSettings } from "./settings.js";
+import { ext } from "./browser-api.js";
 
 const els = {
   deckList: document.getElementById("deck-list"),
@@ -118,7 +119,7 @@ async function save() {
 }
 
 async function init() {
-  els.extOrigin.textContent = `chrome-extension://${chrome.runtime.id}`;
+  els.extOrigin.textContent = new URL(ext.runtime.getURL("/")).origin;
   settings = await loadSettings();
   fillForm();
   await refreshDecks();

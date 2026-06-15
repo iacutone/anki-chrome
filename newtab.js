@@ -7,6 +7,7 @@ import {
   AnkiError,
 } from "./anki.js";
 import { loadSettings } from "./settings.js";
+import { ext } from "./browser-api.js";
 
 const els = {
   views: {
@@ -50,10 +51,10 @@ function showView(name) {
 }
 
 function openOptions() {
-  if (chrome?.runtime?.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
+  if (ext?.runtime?.openOptionsPage) {
+    ext.runtime.openOptionsPage();
   } else {
-    window.location.href = chrome.runtime.getURL("options.html");
+    window.location.href = ext.runtime.getURL("options.html");
   }
 }
 
@@ -207,7 +208,7 @@ function showSetup(title, message, helpHtml) {
 function handleError(err) {
   console.error(err);
   if (err instanceof AnkiError && err.kind === "cors") {
-    const origin = `chrome-extension://${chrome.runtime.id}`;
+    const origin = new URL(ext.runtime.getURL("/")).origin;
     showSetup(
       "Allow this extension in AnkiConnect",
       "AnkiConnect blocked the request. Add this extension to its allowed origins:",
