@@ -134,15 +134,23 @@ function mimeFor(filename) {
  * renders inside the browser (which has no access to Anki's media folder).
  * - <img src="local.png"> -> data URI
  * - [sound:foo.mp3] -> <audio controls> with data URI
+ * @param {boolean} [enableAudio=true] whether to include audio elements
  * Returns { html, audioSources } where audioSources can be auto-played.
  */
-export async function inlineMedia(html, key) {
+export async function inlineMedia(html, key, enableAudio = true) {
   const audioSources = [];
   const container = document.createElement("div");
   container.innerHTML = html;
 
+  if (!enableAudio) {
+    container.querySelectorAll("audio").forEach((el) => el.remove());
+    container.innerHTML = container.innerHTML.replace(/\[sound:[^\]]+\]/gi, "");
+  }
+
   // Inline <img>, <audio>, <video>, <source> referencing local media.
-  const mediaEls = container.querySelectorAll("img, audio, video, source");
+  const mediaEls = container.querySelectorAll(
+    enableAudio ? "img, audio, video, source" : "img, video"
+  );
   await Promise.all(
     Array.from(mediaEls).map(async (el) => {
       const src = el.getAttribute("src");

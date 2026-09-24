@@ -9,6 +9,7 @@ const els = {
   selectNone: document.getElementById("select-none"),
   sessionSize: document.getElementById("sessionSize"),
   includeNew: document.getElementById("includeNew"),
+  enableAudio: document.getElementById("enableAudio"),
   autoPlayAudio: document.getElementById("autoPlayAudio"),
   skipUrl: document.getElementById("skipUrl"),
   apiKey: document.getElementById("apiKey"),
@@ -94,6 +95,7 @@ async function refreshDecks() {
 function fillForm() {
   els.sessionSize.value = settings.sessionSize;
   els.includeNew.checked = settings.includeNew;
+  els.enableAudio.checked = settings.enableAudio;
   els.autoPlayAudio.checked = settings.autoPlayAudio;
   els.skipUrl.value = settings.skipUrl;
   els.apiKey.value = settings.apiKey;
@@ -104,6 +106,7 @@ async function save() {
     deckNames: getCheckedDecks(),
     sessionSize: Math.max(0, parseInt(els.sessionSize.value, 10) || 0),
     includeNew: els.includeNew.checked,
+    enableAudio: els.enableAudio.checked,
     autoPlayAudio: els.autoPlayAudio.checked,
     skipUrl: els.skipUrl.value.trim(),
     apiKey: els.apiKey.value.trim(),

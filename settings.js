@@ -7,7 +7,8 @@ export const DEFAULTS = {
   sessionSize: 20,     // max cards per new tab batch (0 = unlimited)
   includeNew: true,    // include new (not-yet-learned) cards
   skipUrl: "",         // redirect here when nothing is due (empty = stay)
-  autoPlayAudio: true, // auto-play first audio on a card side
+  enableAudio: true,    // render audio embedded in cards
+  autoPlayAudio: true,  // auto-play first audio on a card side
   apiKey: "",          // AnkiConnect API key, if configured
 };
 

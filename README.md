@@ -15,6 +15,7 @@ Inspired by [New Tab Review (Anki)](https://chromewebstore.google.com/detail/new
   - `Space` / `Enter` → show answer, then rate **Good**
   - `1` Again · `2` Hard · `3` Good · `4` Easy
 - **Media support** — images and `[sound:…]` audio are inlined and playable in the browser.
+- **Audio control** — disable audio entirely or turn off automatic playback in the options.
 - **Pick one or more decks & session size** in the options page (or review all decks).
 - **Skip when nothing is due** — optionally redirect to any URL (e.g. Google).
 - **Dark / light** UI that follows your system theme.
@@ -94,6 +95,7 @@ icon on the new-tab page):
 - **Decks** — check one or more decks to pull cards from. Select none to review **all decks**. Use the **All** / **None** buttons to toggle quickly.
 - **Cards per new tab** — how many due cards to queue per tab (`0` = unlimited).
 - **Include new cards** — include not-yet-learned cards.
+- **Enable audio** — show and play audio embedded in cards.
 - **Auto-play audio** — play the first audio clip automatically.
 - **Redirect URL** — where to send the tab when nothing is due.
 - **AnkiConnect API key** — only if you've set one in AnkiConnect's config.

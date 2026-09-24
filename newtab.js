@@ -77,7 +77,11 @@ function updateProgress() {
 async function showFront() {
   state.showingAnswer = false;
   const info = state.current.info;
-  const { html } = await inlineMedia(info.question, state.settings.apiKey);
+  const { html } = await inlineMedia(
+    info.question,
+    state.settings.apiKey,
+    state.settings.enableAudio
+  );
   renderCardSide(html, info.css);
   els.controlsFront.classList.remove("hidden");
   els.controlsBack.classList.add("hidden");
@@ -87,7 +91,11 @@ async function showFront() {
 async function showBack() {
   state.showingAnswer = true;
   const info = state.current.info;
-  const { html } = await inlineMedia(info.answer, state.settings.apiKey);
+  const { html } = await inlineMedia(
+    info.answer,
+    state.settings.apiKey,
+    state.settings.enableAudio
+  );
   renderCardSide(html, info.css);
   els.controlsFront.classList.add("hidden");
   els.controlsBack.classList.remove("hidden");
